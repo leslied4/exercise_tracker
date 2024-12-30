@@ -4,16 +4,16 @@ const cors = require('cors')
 var bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 
+
+require('dotenv').config()
+
 // MongoDB URI
-const uri = "mongodb+srv://freecode:freecode@pms.caysyu8.mongodb.net/?retryWrites=true&w=majority&appName=pms";
+const uri = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@pms.caysyu8.mongodb.net/?retryWrites=true&w=majority&appName=pms`;
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB via Mongoose"))
   .catch(err => console.error("Connection error:", err));
-
-
-require('dotenv').config()
 
 app.use(cors())
 app.use(express.static('public'))
